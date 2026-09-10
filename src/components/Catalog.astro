@@ -1,0 +1,328 @@
+---
+import { CATEGORIES, STORE_ITEMS } from '../data/items';
+import { STORE_INFO } from '../data/store';
+---
+
+<section id="catalog" class="scroll-mt-20 py-10 sm:py-14 lg:py-16 bg-white border-b border-[#e5e5e5]">
+  <div class="max-w-[1440px] mx-auto px-3 sm:px-8">
+    <!-- Header Block per DESIGN.md: Heading-xl, 8px spacing rhythm -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6 sm:mb-8">
+      <div>
+        <div class="inline-flex items-center gap-2 text-[11px] sm:text-xs uppercase font-bold tracking-wider text-[#d30005] mb-1">
+          <span class="w-2 h-2 rounded-full bg-[#d30005]"></span>
+          <span>Wholesale Rates for Shop Owners &amp; Retail Store Counter</span>
+        </div>
+        <h2 class="text-2xl sm:text-4xl font-extrabold tracking-tight text-[#111111] uppercase">
+          AVAILABLE AT STORE COUNTER &amp; WHOLESALE
+        </h2>
+        <p class="text-xs sm:text-sm text-[#707072] mt-1">
+          Explore all 149 items available at our Palitana Taleti counter for Shatrunjay Teerth Yatra pilgrims and in bulk for shopkeepers.
+        </p>
+      </div>
+
+      <!-- Live Search Pill per DESIGN.md -->
+      <div class="relative w-full md:w-80">
+        <input
+          type="text"
+          id="catalog-search"
+          placeholder="Search items (e.g., Badam, Chaval, Stick)..."
+          class="w-full bg-[#f5f5f5] text-[#111111] placeholder-[#707072] text-xs sm:text-sm px-4 py-2.5 sm:py-3 pl-10 rounded-full border border-transparent focus:border-[#111111] focus:bg-white focus:outline-none transition-all"
+        />
+        <svg class="w-4 h-4 text-[#707072] absolute left-3.5 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg>
+      </div>
+    </div>
+
+    <!-- Category Filter Chips (Pill Geometry per DESIGN.md) with horizontal touch scrolling on mobile -->
+    <div class="flex items-center gap-1.5 sm:gap-2 overflow-x-auto pb-3 mb-5 -mx-3 px-3 sm:mx-0 sm:px-0 scrollbar-none no-scrollbar">
+      {CATEGORIES.map((cat) => (
+        <button
+          type="button"
+          data-cat-btn={cat.id}
+          class={`filter-chip flex-shrink-0 !py-1.5 !px-3 sm:!py-2 sm:!px-4 text-xs sm:text-sm ${cat.id === 'all' ? 'active' : ''}`}
+        >
+          <span>{cat.name}</span>
+          <span class="text-[11px] sm:text-xs opacity-75 font-normal">({cat.gujarati})</span>
+        </button>
+      ))}
+    </div>
+
+    <!-- Active Filters & Items Count Strip -->
+    <div class="flex flex-wrap items-center justify-between gap-2 py-2 mb-5 border-b border-[#e5e5e5] text-xs font-semibold text-[#707072]">
+      <div id="items-count-display">
+        Showing 18 of {STORE_ITEMS.length} items
+      </div>
+      <div class="flex items-center gap-3 text-[11px] sm:text-xs">
+        <span class="inline-flex items-center gap-1 text-[#007d48]">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#007d48]"></span> In Stock at Taleti (6:00 AM)
+        </span>
+        <span class="inline-flex items-center gap-1 text-[#d30005]">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#d30005]"></span> Bulk Trade Rates
+        </span>
+      </div>
+    </div>
+
+    <!-- Products Grid: 2 columns on mobile, 3 on sm, 4 on md, 5 on lg, 6 on xl per DESIGN.md -->
+    <div
+      id="items-grid"
+      class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2 sm:gap-4"
+    >
+      {STORE_ITEMS.map((item, index) => (
+        <div
+          data-index={index}
+          data-category={item.category}
+          data-name={item.name.toLowerCase()}
+          data-gu={item.gujarati.toLowerCase()}
+          class="catalog-item-card catalog-card flex flex-col justify-between p-2.5 sm:p-3 group hover:border-[#111111] transition-all bg-white"
+        >
+          <!-- Image / Category Icon Stage (#f5f5f5 background per DESIGN.md) -->
+          <div class="image-stage relative aspect-square w-full flex items-center justify-center p-2.5 sm:p-3 mb-2.5">
+            <!-- Dynamic Category Symbol / Silhouette -->
+            <div class="text-neutral-400 group-hover:text-black transition-colors transform group-hover:scale-105 duration-200">
+              {item.category === 'yatra' && (
+                <svg class="w-9 h-9 sm:w-12 sm:h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+              )}
+              {item.category === 'pooja' && (
+                <svg class="w-9 h-9 sm:w-12 sm:h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343a7.975 7.975 0 010 11.314z" />
+                </svg>
+              )}
+              {item.category === 'dryfruits' && (
+                <svg class="w-9 h-9 sm:w-12 sm:h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                </svg>
+              )}
+              {item.category === 'clothing' && (
+                <svg class="w-9 h-9 sm:w-12 sm:h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                </svg>
+              )}
+              {item.category === 'groceries' && (
+                <svg class="w-9 h-9 sm:w-12 sm:h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+              )}
+              {item.category === 'snacks' && (
+                <svg class="w-9 h-9 sm:w-12 sm:h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
+                </svg>
+              )}
+              {item.category === 'drinks' && (
+                <svg class="w-9 h-9 sm:w-12 sm:h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                </svg>
+              )}
+              {item.category === 'care' && (
+                <svg class="w-9 h-9 sm:w-12 sm:h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+              )}
+            </div>
+
+            <!-- Top Corner Badge -->
+            <span class="absolute top-1.5 left-1.5 text-[9px] sm:text-[10px] font-bold uppercase tracking-tight bg-white text-[#111111] px-1.5 sm:px-2 py-0.5 border border-[#e5e5e5]">
+              {item.badge}
+            </span>
+          </div>
+
+          <!-- Metadata Section per DESIGN.md -->
+          <div class="flex-1 flex flex-col justify-between space-y-1.5 sm:space-y-2">
+            <div>
+              <h3 class="text-xs sm:text-sm font-bold text-[#111111] leading-snug line-clamp-2 group-hover:underline">
+                {item.name}
+              </h3>
+              <div class="text-[11px] sm:text-xs font-semibold text-[#707072] mt-0.5 line-clamp-1">
+                {item.gujarati}
+              </div>
+            </div>
+
+            <div class="pt-1.5 border-t border-[#f0f0f0] flex flex-col gap-1.5">
+              <div class="text-[10px] sm:text-[11px] text-[#707072] truncate">
+                Pack: <span class="font-medium text-[#111111]">{item.unit}</span>
+              </div>
+
+              <!-- Direct WhatsApp Inquiry Button for this item -->
+              <a
+                href={`https://wa.me/918141180807?text=Jai%20Jinendra%20Mandeepbhai!%20I%20am%20inquiring%20about%20*${encodeURIComponent(item.name)}*%20(${encodeURIComponent(item.gujarati)})%20for%20Shatrunjay%20Teerth%20Yatra%20at%20Krishna%20General%20Store,%20Palitana%20Taleti.`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center justify-center gap-1.5 w-full bg-[#f5f5f5] hover:bg-[#111111] text-[#111111] hover:text-white text-[11px] font-bold py-2 px-2 rounded-full border border-[#e5e5e5] transition-colors shadow-xs"
+                title="Inquire price or bulk rates"
+              >
+                <svg class="w-3 h-3 text-[#25D366] flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/>
+                </svg>
+                <span>Price Enquiry</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Show More Items Button & Counter Container per user request: Strictly 'Show More Items' -->
+    <div id="show-more-container" class="mt-8 sm:mt-10 pt-6 border-t border-[#e5e5e5] flex flex-col sm:flex-row items-center justify-center gap-3 w-full">
+      <button
+        type="button"
+        id="show-more-btn"
+        class="btn-primary !h-12 w-full sm:w-auto !px-8 text-sm font-bold shadow-md hover:scale-[1.01] active:scale-[0.98] transition-all flex items-center justify-center gap-2 cursor-pointer"
+      >
+        <span>Show More Items</span>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+
+      <div id="all-loaded-indicator" class="hidden text-xs text-[#007d48] font-bold flex items-center gap-1.5 bg-[#f5f5f5] px-4 py-2.5 rounded-full border border-[#e5e5e5]">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+        </svg>
+        <span>Showing All Items in Selection</span>
+      </div>
+    </div>
+
+    <!-- Empty State if search finds nothing -->
+    <div id="no-items-match" class="hidden text-center py-16">
+      <p class="text-base text-[#707072] mb-3">No store items matched your search.</p>
+      <button type="button" id="reset-filter-btn" class="btn-primary !h-10 !px-6 text-xs font-bold">
+        View All Items
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- Client Script: Exactly 18 items per page, 'Show More Items' title strictly without numbers -->
+<script>
+  const BATCH_SIZE = 18;
+  let currentVisibleLimit = BATCH_SIZE;
+  let activeCategory = 'all';
+  let searchQuery = '';
+
+  const searchInput = document.getElementById('catalog-search') as HTMLInputElement | null;
+  const filterButtons = document.querySelectorAll<HTMLButtonElement>('[data-cat-btn]');
+  const items = Array.from(document.querySelectorAll<HTMLElement>('.catalog-item-card'));
+  const countDisplay = document.getElementById('items-count-display');
+  const noMatchBox = document.getElementById('no-items-match');
+  const resetBtn = document.getElementById('reset-filter-btn');
+  const showMoreBtn = document.getElementById('show-more-btn') as HTMLButtonElement | null;
+  const allLoadedIndicator = document.getElementById('all-loaded-indicator');
+  const showMoreContainer = document.getElementById('show-more-container');
+
+  function applyFilters() {
+    // 1. Identify which items match category and search query
+    const matchingItems: HTMLElement[] = [];
+    items.forEach((card) => {
+      const cat = card.getAttribute('data-category') || '';
+      const name = card.getAttribute('data-name') || '';
+      const gu = card.getAttribute('data-gu') || '';
+
+      const matchesCat = activeCategory === 'all' || cat === activeCategory;
+      const matchesSearch = !searchQuery || name.includes(searchQuery) || gu.includes(searchQuery);
+
+      if (matchesCat && matchesSearch) {
+        matchingItems.push(card);
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    const totalMatching = matchingItems.length;
+
+    // 2. Display only up to currentVisibleLimit of the matching items
+    matchingItems.forEach((card, idx) => {
+      if (idx < currentVisibleLimit) {
+        card.style.display = 'flex';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    const currentlyShown = Math.min(currentVisibleLimit, totalMatching);
+
+    // 3. Update counter text cleanly
+    if (countDisplay) {
+      countDisplay.textContent = `Showing ${currentlyShown} of ${totalMatching} items`;
+    }
+
+    // 4. Update empty state
+    if (noMatchBox) {
+      noMatchBox.classList.toggle('hidden', totalMatching > 0);
+    }
+
+    // 5. Update Show More button state: strictly 'Show More Items' title without numbers
+    if (showMoreContainer && showMoreBtn && allLoadedIndicator) {
+      if (totalMatching === 0) {
+        showMoreContainer.classList.add('hidden');
+      } else {
+        showMoreContainer.classList.remove('hidden');
+        const remaining = totalMatching - currentlyShown;
+        if (remaining > 0) {
+          showMoreBtn.classList.remove('hidden');
+          // Strictly title only 'Show More Items' per user request (no +18, no +5, no numbers)
+          showMoreBtn.innerHTML = `<span>Show More Items</span><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>`;
+          allLoadedIndicator.classList.add('hidden');
+        } else {
+          showMoreBtn.classList.add('hidden');
+          allLoadedIndicator.classList.remove('hidden');
+          allLoadedIndicator.innerHTML = `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg><span>Showing All ${totalMatching} Items</span>`;
+        }
+      }
+    }
+  }
+
+  // Initial execution to show first 18 items
+  applyFilters();
+
+  // Show More Button Click Handler
+  if (showMoreBtn) {
+    showMoreBtn.addEventListener('click', () => {
+      currentVisibleLimit += BATCH_SIZE;
+      applyFilters();
+    });
+  }
+
+  // Category filter clicks (resets visible count back to 18)
+  filterButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      filterButtons.forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeCategory = btn.getAttribute('data-cat-btn') || 'all';
+      currentVisibleLimit = BATCH_SIZE;
+      applyFilters();
+    });
+  });
+
+  // Nav links that filter categories
+  document.querySelectorAll('[data-filter]').forEach((link) => {
+    link.addEventListener('click', () => {
+      const cat = link.getAttribute('data-filter') || 'all';
+      const targetBtn = document.querySelector(`[data-cat-btn="${cat}"]`) as HTMLButtonElement | null;
+      if (targetBtn) {
+        targetBtn.click();
+      }
+    });
+  });
+
+  // Search input typing (resets visible count back to 18)
+  if (searchInput) {
+    searchInput.addEventListener('input', () => {
+      searchQuery = searchInput.value.trim().toLowerCase();
+      currentVisibleLimit = BATCH_SIZE;
+      applyFilters();
+    });
+  }
+
+  // Reset filter button
+  if (resetBtn) {
+    resetBtn.addEventListener('click', () => {
+      if (searchInput) searchInput.value = '';
+      searchQuery = '';
+      currentVisibleLimit = BATCH_SIZE;
+      const allBtn = document.querySelector('[data-cat-btn="all"]') as HTMLButtonElement | null;
+      if (allBtn) allBtn.click();
+    });
+  }
+</script>

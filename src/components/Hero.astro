@@ -1,0 +1,81 @@
+---
+import { STORE_INFO } from '../data/store';
+---
+
+<section class="relative bg-[#111111] text-white overflow-hidden">
+  <!-- Real Shop Front Photography Background with dark editorial gradient overlay -->
+  <div class="relative w-full min-h-[560px] sm:min-h-[600px] lg:min-h-[660px] flex items-end">
+    <img
+      src="/images/shop-front.jpg"
+      alt="Krishna General Store & Upkaran Bhandar at Palitana Taleti"
+      class="absolute inset-0 w-full h-full object-cover object-center filter brightness-90 contrast-105"
+      loading="eager"
+    />
+    <!-- Subtle editorial gradient wash per DESIGN.md -->
+    <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/70 to-black/40"></div>
+
+    <!-- Hero Content Overlay -->
+    <div class="relative z-10 max-w-[1440px] mx-auto px-4 sm:px-8 py-10 sm:py-12 lg:py-16 w-full">
+      <!-- Clean Location Badge -->
+      <div class="mb-3 sm:mb-4">
+        <div class="inline-flex items-center gap-2 bg-white/15 backdrop-blur-md text-white border border-white/25 px-3.5 sm:px-4 py-1.5 rounded-full text-[11px] sm:text-xs font-semibold tracking-wide uppercase shadow-sm">
+          <span class="w-2 h-2 rounded-full bg-[#1eaa52] animate-pulse"></span>
+          <span>Palitana Taleti · Shatrunjay Teerth Yatra Foothills (તળેટી)</span>
+        </div>
+      </div>
+
+      <!-- Towering Display Campaign Headline per DESIGN.md: Responsive scaling for all devices -->
+      <h1 class="font-campaign text-white text-4xl sm:text-6xl md:text-7xl lg:text-9xl tracking-tight uppercase leading-[0.92] max-w-5xl mb-3 sm:mb-4 text-shadow-sm">
+        SHATRUNJAY TEERTH YATRA ESSENTIALS &amp; WHOLESALE STORE
+      </h1>
+
+      <!-- Gujarati Store Heading -->
+      <p class="text-white/95 text-base sm:text-2xl font-bold max-w-3xl leading-snug mb-2 sm:mb-3">
+        ક્રિષ્ના જનરલ સ્ટોર અને ઉપકરણ ભંડાર (A to Z) · શેત્રુંજય તીર્થ તળેટી
+      </p>
+
+      <!-- Updated Paragraph Highlighting Main Jain Items -->
+      <p class="text-white/85 text-xs sm:text-base max-w-3xl leading-relaxed mb-6 sm:mb-8">
+        Retail counter items for pilgrims climbing Shatrunjay Teerth Yatra — featuring premium <strong>Almonds (Badam)</strong>, <strong>Rice (Chaval)</strong>, <strong>Cashews (Kaju)</strong>, <strong>Dry Coconut</strong>, <strong>Pure Ghee</strong>, <strong>Jain Pooja Upkaran &amp; Dhoop</strong>, <strong>Walking Sticks</strong>, <strong>Pure White Cotton Cloths</strong>, and chilled Bisleri water — along with <strong>direct wholesale trade rates</strong> for local shop owners, dharamshalas &amp; institutions.
+      </p>
+
+      <!-- Pill Buttons per DESIGN.md: Full-width stacked on mobile for high touch usability -->
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-4 w-full sm:w-auto">
+        <a href="#catalog" class="btn-outline-on-image !h-12 w-full sm:w-auto !px-8 text-sm font-bold tracking-wide text-center justify-center">
+          Explore All 150 Items
+        </a>
+
+        <a href="#wholesale" class="btn-primary !border-white/30 !bg-white/10 hover:!bg-white/20 backdrop-blur-sm !h-12 w-full sm:w-auto !px-8 text-sm font-bold text-center justify-center">
+          Wholesale Rates for Shop Owners
+        </a>
+
+        <a href={`tel:${STORE_INFO.phoneRaw}`} class="inline-flex items-center justify-center gap-2 text-white/90 hover:text-white text-xs sm:text-sm font-semibold px-4 py-2.5 rounded-full hover:bg-white/10 transition-colors border border-white/20 sm:border-transparent">
+          <svg class="w-4 h-4 text-[#1eaa52]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+          </svg>
+          <span>Call Shop: {STORE_INFO.phone}</span>
+        </a>
+      </div>
+
+      <!-- Quick Trust Indicators strip with 6:00 AM timing: Clean 2-col on mobile -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4 mt-8 sm:mt-10 pt-6 sm:pt-8 border-t border-white/20 text-white/80 text-xs sm:text-sm">
+        <div class="p-2 sm:p-0 bg-white/5 sm:bg-transparent rounded-lg sm:rounded-none">
+          <div class="font-bold text-white text-sm sm:text-base">Direct Retail Counter</div>
+          <div class="text-white/60 text-[11px] sm:text-xs">Almonds, Rice, sticks, pooja gear</div>
+        </div>
+        <div class="p-2 sm:p-0 bg-white/5 sm:bg-transparent rounded-lg sm:rounded-none">
+          <div class="font-bold text-white text-sm sm:text-base">Wholesale Trade Pricing</div>
+          <div class="text-white/60 text-[11px] sm:text-xs">Bulk rates for other shopkeepers</div>
+        </div>
+        <div class="p-2 sm:p-0 bg-white/5 sm:bg-transparent rounded-lg sm:rounded-none">
+          <div class="font-bold text-white text-sm sm:text-base">6:00 AM Early Open</div>
+          <div class="text-white/60 text-[11px] sm:text-xs">Ready for morning yatris</div>
+        </div>
+        <div class="p-2 sm:p-0 bg-white/5 sm:bg-transparent rounded-lg sm:rounded-none">
+          <div class="font-bold text-white text-sm sm:text-base">Taleti Foothills</div>
+          <div class="text-white/60 text-[11px] sm:text-xs">Palitana, Gujarat</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

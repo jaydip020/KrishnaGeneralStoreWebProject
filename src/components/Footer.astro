@@ -1,0 +1,157 @@
+---
+import { STORE_INFO } from '../data/store';
+import { CATEGORIES } from '../data/items';
+---
+
+<footer class="bg-white border-t border-[#cacacb] text-[#707072] text-sm pt-12 pb-8">
+  <div class="max-w-[1440px] mx-auto px-4 sm:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+      <!-- Col 1: Brand & Purpose with Official Krishna Logo -->
+      <div class="space-y-3">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 bg-white border border-[#e5e5e5] rounded-full overflow-hidden flex items-center justify-center p-0.5">
+            <img
+              src={STORE_INFO.logoUrl}
+              alt="Krishna Logo"
+              class="w-full h-full object-contain"
+            />
+          </div>
+          <span class="font-extrabold text-[#111111] text-base tracking-tight uppercase">
+            Krishna General Store
+          </span>
+        </div>
+        <p class="text-xs text-[#707072] leading-relaxed">
+          ક્રિષ્ના જનરલ સ્ટોર અને ઉપકરણ ભંડાર (A to Z) · પાલિતાણા તળેટી.
+          પ્રોપ્રાઇટર: <strong>{STORE_INFO.ownerName} ({STORE_INFO.ownerGujarati})</strong>.
+          Serving Shatrunjay Teerth Yatris with almonds (Badam), rice (Chaval), dry fruits, puja articles, climbing sticks, white clothes, and chilled water; plus bulk trade supplies for shopkeepers.
+        </p>
+        <div class="pt-1 text-xs">
+          <span class="inline-block bg-[#f5f5f5] text-[#111111] font-semibold px-2.5 py-1 rounded-full border border-[#e5e5e5]">
+            Strictly Informational Catalog · Counter &amp; Wholesale
+          </span>
+        </div>
+      </div>
+
+      <!-- Col 2: Store Departments -->
+      <div>
+        <h4 class="font-semibold text-[#111111] text-sm uppercase tracking-wider mb-3">
+          Store Departments
+        </h4>
+        <ul class="space-y-2 text-xs">
+          {CATEGORIES.slice(1).map((cat) => (
+            <li>
+              <a href="#catalog" class="hover:text-[#111111] transition-colors">
+                {cat.name} ({cat.gujarati})
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Col 3: Wholesale & Institutions -->
+      <div>
+        <h4 class="font-semibold text-[#111111] text-sm uppercase tracking-wider mb-3">
+          Wholesale &amp; Bulk Supply
+        </h4>
+        <ul class="space-y-2 text-xs">
+          <li>
+            <a href="#wholesale" class="text-[#d30005] font-bold hover:underline">
+              Trade Pricing for Shopkeepers (જથ્થાબંધ ભાવ)
+            </a>
+          </li>
+          <li>
+            <a href="#wholesale" class="hover:text-[#111111] transition-colors">
+              Almonds (Badam) &amp; Rice (Chaval) in Sacks
+            </a>
+          </li>
+          <li>
+            <a href="#wholesale" class="hover:text-[#111111] transition-colors">
+              Walking Sticks in Bundles
+            </a>
+          </li>
+          <li>
+            <a href="#wholesale" class="hover:text-[#111111] transition-colors">
+              Puja Samagri &amp; Agarbatti Cartons
+            </a>
+          </li>
+          <li>
+            <a href="#wholesale" class="hover:text-[#111111] transition-colors">
+              Bisleri Water Crates &amp; Cold Drinks
+            </a>
+          </li>
+          <li>
+            <a href={STORE_INFO.wholesaleWhatsappLink} target="_blank" rel="noopener noreferrer" class="hover:text-[#111111] font-bold flex items-center gap-1 text-[#25D366]">
+              WhatsApp Wholesale Desk: {STORE_INFO.phone} →
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Col 4: Shop Location & Contact -->
+      <div>
+        <h4 class="font-semibold text-[#111111] text-sm uppercase tracking-wider mb-3">
+          Proprietor &amp; Visit Details
+        </h4>
+        <div class="space-y-2 text-xs">
+          <div>
+            <span class="block font-semibold text-[#111111]">Proprietor:</span>
+            <span class="font-bold text-black">{STORE_INFO.ownerName} ({STORE_INFO.ownerGujarati})</span>
+          </div>
+          <div>
+            <span class="block font-semibold text-[#111111]">Mobile Call &amp; WhatsApp:</span>
+            <a href={`tel:${STORE_INFO.phoneRaw}`} class="font-extrabold text-[#111111] hover:underline text-sm">
+              {STORE_INFO.phone}
+            </a>
+          </div>
+          <div>
+            <span class="block font-semibold text-[#111111]">Opening Hours:</span>
+            <span class="font-semibold text-[#007d48]">6:00 AM – 10:00 PM (Daily)</span>
+          </div>
+          <div>
+            <span class="block font-semibold text-[#111111]">Location:</span>
+            <span>{STORE_INFO.address}</span>
+          </div>
+          <div class="pt-2 flex flex-col gap-2">
+            <a
+              href={STORE_INFO.googleEarthUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-[#1151ff] hover:underline font-semibold flex items-center gap-1"
+            >
+              <span>View in Google Earth</span>
+              <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"/>
+                <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"/>
+              </svg>
+            </a>
+            <a
+              href={STORE_INFO.googleMapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-[#111111] hover:underline font-semibold flex items-center gap-1"
+            >
+              <span>View in Google Maps</span>
+              <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fine-print row per DESIGN.md: utility-xs (9px / 12px), mute text, hairline divider -->
+    <div class="pt-8 border-t border-[#cacacb] flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-[#707072]">
+      <div>
+        © {new Date().getFullYear()} Krishna General Store &amp; Upkaran Bhandar · Proprietor: Sondagar Mandeepbhai ({STORE_INFO.phone}) · Palitana Taleti, Gujarat.
+      </div>
+      <div class="flex items-center gap-4">
+        <span>Shatrunjay Teerth Yatra Gate</span>
+        <span>·</span>
+        <span>Open 6:00 AM Daily</span>
+        <span>·</span>
+        <span>GPS: 21.50797, 71.81599</span>
+      </div>
+    </div>
+  </div>
+</footer>
